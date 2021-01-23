@@ -1,19 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addItem } from '../action';
 
-const AddSubItem = () => {
+const AddSubItem = (props) => {
+    const addOnClick = (id) => {
+        props.addItem(id);
+    }
+
     return (
         <div className="AddSubButton">
-            <button class="ui small primary button">
+            <button className="ui small primary button">
                 -
             </button>
             <div className="countItem" >
-                0
+                {props.items[props.id]}
             </div>
-            <button class="ui small button">
+            <button className="ui small button" onClick={() => addOnClick(props.id)}>
                 +
             </button>
         </div>
     );
 }
 
-export default AddSubItem;
+const mapStateToProps = state => {
+    return { items: state.items };
+}
+
+export default connect(mapStateToProps, { addItem })(AddSubItem);

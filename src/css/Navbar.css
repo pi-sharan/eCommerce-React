@@ -1,0 +1,7 @@
+.Navbar{
+    position: fixed;
+    top:0;
+    width: 100%;
+    background-color: grey;
+    /* background-color: black; */
+}

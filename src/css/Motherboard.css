@@ -3,16 +3,29 @@
     /* width : 80%; */
     justify-content: center;
     margin-top: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
     /* background-color: red; */
-    padding-left: 50px;
+    /* padding-left: 50px; */
     
 }
 
 .ItemGrid{
     display: grid; 
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    /* background-color: green; */
+    justify-items: center;
 
+}
 
+@media(width>550px){
+    .ItemGrid{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(width>850px){
+    .ItemGrid{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }

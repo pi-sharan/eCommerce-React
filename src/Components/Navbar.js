@@ -1,30 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../css/Navbar.css';
 
 const Navbar = () => {
     return (
-        <div>
-            <div class="ui secondary pointing menu">
-                <Link to="/" class="item" >
+        <div className="Navbar">
+            <div className="ui secondary pointing menu">
+                <Link to="/" className="item" >
                     Home
                 </Link>
-                <Link to="/motherboard" class="item">
+                <Link to="/motherboard" className="item">
                     Motherboard
                 </Link>
-                <Link to="/memory" class="item">
+                <Link to="/memory" className="item">
                     Memory
                 </Link>
-                <Link to="/processor" class="item">
+                <Link to="/processor" className="item">
                     Processor
                 </Link>
-                <Link to="/graphics-card" class="item">
+                <Link to="/graphics-card" className="item">
                     Graphics Card
                 </Link>
-                <div class="right menu">
-                    <a class="ui item">
+                <div className="right menu">
+                    <a className="ui item">
                         Sign In
                     </a>
-                    <a class="ui item">
+                    <a className="ui item">
                         Log In
                     </a>
                 </div>
