@@ -1,15 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addItem } from '../action';
+import { addItem, subItem, getProducts } from '../action';
 
 const AddSubItem = (props) => {
     const addOnClick = (id) => {
         props.addItem(id);
     }
 
+    const subOnClick = (id) => {
+        props.subItem(id);
+    }
+
     return (
         <div className="AddSubButton">
-            <button className="ui small primary button">
+            <button className="ui small primary button" onClick={() => subOnClick(props.id)}>
                 -
             </button>
             <div className="countItem" >
@@ -26,4 +30,4 @@ const mapStateToProps = state => {
     return { items: state.items };
 }
 
-export default connect(mapStateToProps, { addItem })(AddSubItem);
+export default connect(mapStateToProps, { addItem, subItem })(AddSubItem);
