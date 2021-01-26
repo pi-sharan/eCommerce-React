@@ -1,5 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
+
+
 import data from './products.js';
 
 mongoose.connect('mongodb://localhost:27017/products', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -24,29 +27,43 @@ const prodSchema = new mongoose.Schema({
 
 
 const Product = mongoose.model('Product', prodSchema);
-Product.remove({}, function (err) {
-    console.log('collection removed')
-});
+// Product.remove({}, function (err) {
+//     console.log('collection removed')
+// });
 
-for (let prod of data) {
-    const currProd = new Product({
-        dbType: 'Products',
-        id: prod.id,
-        title: prod.title,
-        price: prod.price,
-        img: prod.img,
-        type: prod.type,
-    });
+// for (let prod of data) {
+//     const currProd = new Product({
+//         dbType: 'Products',
+//         id: prod.id,
+//         title: prod.title,
+//         price: prod.price,
+//         img: prod.img,
+//         type: prod.type,
+//     });
 
-    currProd.save();
-}
+//     currProd.save();
+// }
 
 //PRODUCT DATABASE DONE
 
 const app = express();
 
-app.get("/api/products", (req, res) => {
+
+
+//app.use(cors());
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
+
+app.get("/api/products", async (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
+
+
+    const prods = await Product.find({ dbType: 'Products' });
+    console.log(prods);
+
     res.send(data);
 })
 
@@ -98,6 +115,21 @@ app.post("/cart/:id/:quantity", async (req, res) => {
     // console.log(tempId + ' ' + tempQuantity);
     // console.log(prod[0]);
     res.send('Successfully saved to DB');
+
+})
+
+app.post("/add-product", async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    const newProduct = new Product({
+        dbType: 'Products',
+        id: req.headers.id,
+        title: req.headers.title,
+        price: req.headers.price,
+        img: req.headers.img,
+        type: req.headers.type,
+    })
+    await newProduct.save();
+    res.send(req.headers);
 
 })
 

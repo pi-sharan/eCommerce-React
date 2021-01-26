@@ -21,6 +21,9 @@ const Navbar = () => {
                 <Link to="/graphics-card" className="item">
                     Graphics Card
                 </Link>
+                <Link to="/add" className="item">
+                    Add Item
+                </Link>
                 <div className="right menu temp">
                     <Link to="/cart" className="item">
                         <i class="shopping cart large icon cartIcon" ></i>
