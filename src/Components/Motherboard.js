@@ -3,6 +3,7 @@ import Item from './Item';
 import '../css/Motherboard.css';
 import { getProducts } from '../action';
 import { connect } from 'react-redux';
+import { render } from '@testing-library/react';
 
 const Motherboard = (props) => {
 
@@ -19,6 +20,7 @@ const Motherboard = (props) => {
         <div className="ItemContainer">
             <div className="ItemGrid">
                 {renderList}
+                {/* {console.dir(renderList)} */}
 
             </div>
         </div>

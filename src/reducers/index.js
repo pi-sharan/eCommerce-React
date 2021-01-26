@@ -38,28 +38,31 @@ const prodListReducer = (state = [], action) => {
     return state;
 }
 
-const cartReducer = (state, action) => {
-    if (state === undefined) {
-        let arr = new Array(100);
-        for (let i = 0; i < 100; ++i)
-            arr[i] = 0;
-        return arr;
-    }
 
+// const fetchByIdReducer = (state = null, action) => {
+//     if (action.type === 'FETCH_BY_ID') {
+//         console.log('IN REDUCER');
+//         console.log(action.payload.data);
+//         return action.payload.data;
+//     }
+//     return state;
+// }
+
+const cartReducer = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_TO_CART':
-            let newState = [...state];
-            newState[action.payload.id] += action.payload.quantity;
-            return newState;
+        case 'FETCH_CART_ITEMS':
+            // console.log('in reducer');
+            // console.log(action.payload);
+            return action.payload;
         default:
             return state;
     }
 }
 
 
-
 export default combineReducers({
     items: ItemReducer,
     prodList: prodListReducer,
-    cartItems: cartReducer
+    cartItems: cartReducer,
+    // itemById: fetchByIdReducer
 });

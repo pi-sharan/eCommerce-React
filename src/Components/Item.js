@@ -14,7 +14,6 @@ const Item = (props) => {
 
     // console.log(props.cartItems);
 
-
     return (
         <div className="fullItem">
             <img src={props.src} alt="Not Available" />

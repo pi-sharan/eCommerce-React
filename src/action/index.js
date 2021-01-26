@@ -30,11 +30,30 @@ export const makeZero = (id) => {
 }
 
 export const addItemToCart = (id, quantity) => {
-    return {
-        type: 'ADD_TO_CART',
-        payload: {
-            id: id,
-            quantity: quantity
-        }
+    return async function (dispatch) {
+        await axios.post(`http://localhost:5000/cart/${id}/${quantity}`);
+        dispatch({ type: 'ADD_TO_CART', payload: 'Saved to DB' });
+    }
+}
+
+export const fetchById = (id) => {
+    return async function (dispatch) {
+        const completeURL = `http://localhost:5000/api/products/${id}`;
+        // console.log(completeURL);
+        const response = await axios.get(completeURL);
+        console.log('IN ACTION CREATOR');
+        console.log(response);
+
+        dispatch({ type: 'FETCH_BY_ID', payload: response });
+    }
+}
+
+export const getCartItems = () => {
+    return async function (dispatch) {
+        const response = await axios.get('http://localhost:5000/cart/products');
+        // console.log('in action creator');
+        // console.log(response);
+
+        dispatch({ type: 'FETCH_CART_ITEMS', payload: response.data });
     };
 }
