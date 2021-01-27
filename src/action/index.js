@@ -36,24 +36,35 @@ export const addItemToCart = (id, quantity) => {
     }
 }
 
-export const fetchById = (id) => {
-    return async function (dispatch) {
-        const completeURL = `http://localhost:5000/api/products/${id}`;
-        // console.log(completeURL);
-        const response = await axios.get(completeURL);
-        console.log('IN ACTION CREATOR');
-        console.log(response);
+// export const fetchById = (id) => {
+//     return async function (dispatch) {
+//         const completeURL = `http://localhost:5000/api/products/${id}`;
+//         // console.log(completeURL);
+//         const response = await axios.get(completeURL);
+//         console.log('IN ACTION CREATOR');
+//         console.log(response);
 
-        dispatch({ type: 'FETCH_BY_ID', payload: response });
-    }
-}
+//         dispatch({ type: 'FETCH_BY_ID', payload: response });
+//     }
+// }
 
 export const getCartItems = () => {
     return async function (dispatch) {
         const response = await axios.get('http://localhost:5000/cart/products');
-        // console.log('in action creator');
-        // console.log(response);
 
         dispatch({ type: 'FETCH_CART_ITEMS', payload: response.data });
     };
+}
+
+export const removeFromCart = (ID) => {
+    // console.log(ID + ' ' + typeof (ID));
+    return async function (dispatch) {
+        const response = await axios.post(`http://localhost:5000/cart/products/remove`, {}, {
+            headers: {
+                id: ID,
+            }
+        });
+        // console.log(response.data);
+        dispatch({ type: 'FETCH_CART_ITEMS', payload: response.data });
+    }
 }

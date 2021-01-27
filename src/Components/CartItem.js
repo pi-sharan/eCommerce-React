@@ -2,15 +2,21 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import '../css/CartItem.css';
-import { fetchById } from '../action';
+import { removeFromCart } from '../action';
 
 const CartItem = (props) => {
 
-
+    const remove = () => {
+        props.removeFromCart(props.obj.id);
+        console.log('clicked');
+    }
 
 
     return (
         <div className="cartItem">
+            <div onClick={remove}>
+                <i class="window close icon" ></i>
+            </div>
             <div className="itemImage">
                 <img src={props.obj.img} />
             </div>
@@ -19,13 +25,13 @@ const CartItem = (props) => {
                     {props.obj.title}
                 </div>
                 <div className="Price">
-                    {props.obj.price}
+                    Price : <span className="spaceIt">{props.obj.price}</span>
                 </div>
                 <div>
-                    {props.obj.quantity}
+                    Quantity : <span className="spaceIt">{props.obj.quantity}</span>
                 </div>
                 <div>
-                    Total = {(parseInt(props.obj.price.replace(/,/g, '')) * props.obj.quantity).toLocaleString()}
+                    Total = <span className="spaceIt">{(parseInt(props.obj.price.replace(/,/g, '')) * props.obj.quantity).toLocaleString()}</span>
                 </div>
             </div>
 
@@ -34,10 +40,10 @@ const CartItem = (props) => {
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        itemById: state.itemById,
-    };
-}
+// const mapStateToProps = state => {
+//     return {
+//         itemById: state.itemById,
+//     };
+// }
 
-export default connect(mapStateToProps, { fetchById })(CartItem);
+export default connect(null, { removeFromCart })(CartItem);

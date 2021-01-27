@@ -64,7 +64,7 @@ app.get("/api/products", async (req, res) => {
     const prods = await Product.find({ dbType: 'Products' });
     console.log(prods);
 
-    res.send(data);
+    res.send(prods);
 })
 
 app.get("/api/products/:id", (req, res) => {
@@ -79,6 +79,16 @@ app.get("/api/products/:id", (req, res) => {
     Product.find({ id: id }).then(data => res.send(data));
     // res.send(resToSend);
 })
+
+app.post("/cart/products/remove", async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    await Product.remove({ id: req.headers.id, dbType: 'Cart' });
+    const prods = await Product.find({ dbType: 'Cart' });
+    res.send(prods);
+    // res.send('Cart Item Removed');
+})
+
 
 app.get("/cart/products", async (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -132,5 +142,6 @@ app.post("/add-product", async (req, res) => {
     res.send(req.headers);
 
 })
+
 
 app.listen(5000, () => console.log('Server started'));
