@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import '../css/Navbar.css';
+import { getCartItems } from '../action';
 
 
 const Navbar = (props) => {
+    useEffect(() => {
+        props.getCartItems();
+    }, [])
     return (
         <div className="Navbar">
             <div className="ui secondary pointing menu">
@@ -51,4 +55,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { getCartItems })(Navbar);

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Item from './Item';
 import '../css/Motherboard.css';
-import { getProducts } from '../action';
+import { getProducts, getCartItems } from '../action';
 import { connect } from 'react-redux';
 import { render } from '@testing-library/react';
 
@@ -34,4 +34,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { getProducts })(Motherboard);
+export default connect(mapStateToProps, { getProducts, getCartItems })(Motherboard);
