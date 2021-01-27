@@ -36,12 +36,12 @@ const Navbar = (props) => {
                         <i class="shopping cart large icon cartIcon" ></i>
                     </Link>
                     <div className="circle">{props.items.length}</div>
-                    <a className="ui item">
+                    <Link to="/sign-in" className="ui item">
                         Sign In
-                    </a>
-                    <a className="ui item">
+                    </Link>
+                    <Link to="/log-in" className="ui item">
                         Log In
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

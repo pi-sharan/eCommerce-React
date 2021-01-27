@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 const Motherboard = (props) => {
 
     useEffect(() => {
-        props.getProducts();
+        props.getProducts('Graphics');
     }, []);
 
     const renderList = props.prodList.map(({ id, img, price, title }) => {

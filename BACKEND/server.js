@@ -22,35 +22,19 @@ const prodSchema = new mongoose.Schema({
     img: String,
     type: String,
     quantity: Number,
+
+    email: String,
+    password: String,
+    name: String,
+    isAdmin: Boolean,
+
 });
 
 
 
 const Product = mongoose.model('Product', prodSchema);
-// Product.remove({}, function (err) {
-//     console.log('collection removed')
-// });
-
-// for (let prod of data) {
-//     const currProd = new Product({
-//         dbType: 'Products',
-//         id: prod.id,
-//         title: prod.title,
-//         price: prod.price,
-//         img: prod.img,
-//         type: prod.type,
-//     });
-
-//     currProd.save();
-// }
-
-//PRODUCT DATABASE DONE
 
 const app = express();
-
-
-
-//app.use(cors());
 
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -60,11 +44,31 @@ app.use(cors({
 app.get("/api/products", async (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
-
-    const prods = await Product.find({ dbType: 'Products' });
-    console.log(prods);
-
+    const prods = await Product.find({ dbType: 'Products', type: req.headers.type });
     res.send(prods);
+})
+
+app.post("/add-user", async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    const checkUser = Product.find({ dbType: 'Users', email: req.headers.email });
+    if (checkUser.length > 0) {
+        res.send('ERROR_USER_EXISTS');
+    }
+    else {
+        const newUser = new Product({
+            dbType: 'Users',
+            email: req.headers.email,
+            name: req.headers.name,
+            password: req.headers.password
+        })
+        newUser.save();
+
+        res.send('USER_SAVED');
+    }
+    // console.log(req.headers);
+    // res.send('Hello');
+
 })
 
 app.get("/api/products/:id", (req, res) => {

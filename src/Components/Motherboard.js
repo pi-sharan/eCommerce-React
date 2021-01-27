@@ -8,7 +8,7 @@ import { render } from '@testing-library/react';
 const Motherboard = (props) => {
 
     useEffect(() => {
-        props.getProducts();
+        props.getProducts('Motherboard');
     }, []);
 
     const renderList = props.prodList.map(({ id, img, price, title }) => {

@@ -12,6 +12,7 @@ const AddProduct = (props) => {
     const [Img, setImg] = useState('');
 
     const saveToDB = async (event) => {
+        console.log('AddProduct');
         event.preventDefault();
         const response = await axios.post("http://localhost:5000/add-product", {}, {
             headers: {
@@ -23,7 +24,13 @@ const AddProduct = (props) => {
                 type: Type,
             }
         });
-        console.log(response);
+        // console.log(response);
+        setId('');
+        setTitle('');
+        setPrice('');
+        setType('');
+        setDesc('');
+        setImg('');
     }
 
 
@@ -32,27 +39,27 @@ const AddProduct = (props) => {
             <form class="ui form">
                 <div class="field">
                     <label>ID</label>
-                    <input type="text" name="ID" placeholder="ID" onChange={e => setId(e.target.value)} />
+                    <input type="text" name="ID" value={Id} placeholder="ID" onChange={e => setId(e.target.value)} />
                 </div>
                 <div class="field">
                     <label>Product Name</label>
-                    <input type="text" name="Product-Name" placeholder="Product Name" onChange={e => setTitle(e.target.value)} />
+                    <input type="text" name="Product-Name" value={Title} placeholder="Product Name" onChange={e => setTitle(e.target.value)} />
                 </div>
                 <div class="field">
                     <label>Product Description</label>
-                    <input type="text" name="product-desc" placeholder="Product Description" onChange={e => setDesc(e.target.value)} />
+                    <input type="text" name="product-desc" value={Desc} placeholder="Product Description" onChange={e => setDesc(e.target.value)} />
                 </div>
                 <div class="field">
                     <label>Type</label>
-                    <input type="text" name="type" placeholder="Motherboard, Processor, etc." onChange={e => setType(e.target.value)} />
+                    <input type="text" name="type" value={Type} placeholder="Motherboard, Processor, etc." onChange={e => setType(e.target.value)} />
                 </div>
                 <div class="field">
                     <label>Price</label>
-                    <input type="text" name="price" placeholder="Price in Rupees" onChange={e => setPrice(e.target.value)} />
+                    <input type="text" name="price" value={Price} placeholder="Price in Rupees" onChange={e => setPrice(e.target.value)} />
                 </div>
                 <div class="field">
                     <label>Image</label>
-                    <input type="text" name="image" placeholder="Location of image" onChange={e => setImg(e.target.value)} />
+                    <input type="text" name="image" value={Img} placeholder="Location of image" onChange={e => setImg(e.target.value)} />
                 </div>
 
                 <button class="ui button" type="submit" onClick={saveToDB}>Submit</button>
