@@ -18,6 +18,7 @@ const App = () => {
     return (<div>
         <BrowserRouter>
             <Navbar />
+            <div className="line"></div>
             <div className="mainBody">
                 <Route path="/" exact component={Home} />
                 <Route path="/motherboard" exact component={Motherboard} />
