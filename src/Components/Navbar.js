@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import '../css/Navbar.css';
 
-const Navbar = () => {
+
+const Navbar = (props) => {
     return (
         <div className="Navbar">
             <div className="ui secondary pointing menu">
@@ -28,6 +31,7 @@ const Navbar = () => {
                     <Link to="/cart" className="item">
                         <i class="shopping cart large icon cartIcon" ></i>
                     </Link>
+                    <div className="circle">{props.items.length}</div>
                     <a className="ui item">
                         Sign In
                     </a>
@@ -40,4 +44,11 @@ const Navbar = () => {
     );
 }
 
-export default Navbar;
+const mapStateToProps = state => {
+    // console.log(state.cartItems);
+    return {
+        items: state.cartItems,
+    }
+}
+
+export default connect(mapStateToProps)(Navbar);

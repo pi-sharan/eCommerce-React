@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 
 import '../css/Item.css';
 import AddSubItem from './AddSubItem.js';
-import { makeZero, addItemToCart } from '../action';
+import { makeZero, addItemToCart, getCartItems } from '../action';
 
 const Item = (props) => {
 
     const addToCart = async (id) => {
         await props.makeZero(id);
         await props.addItemToCart(id, props.items[id]);
+        await props.getCartItems();
     }
 
     // console.log(props.cartItems);
@@ -48,4 +49,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { makeZero, addItemToCart })(Item);
+export default connect(mapStateToProps, { makeZero, addItemToCart, getCartItems })(Item);

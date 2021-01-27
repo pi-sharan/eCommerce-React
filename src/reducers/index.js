@@ -51,8 +51,6 @@ const prodListReducer = (state = [], action) => {
 const cartReducer = (state = [], action) => {
     switch (action.type) {
         case 'FETCH_CART_ITEMS':
-            // console.log('in reducer');
-            // console.log(action.payload);
             return action.payload;
         default:
             return state;

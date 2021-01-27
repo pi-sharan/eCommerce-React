@@ -7,3 +7,14 @@
     z-index:1; /*Add this*/
     /* background-color: black; */
 }
+
+.circle{
+    color: white;
+    background-color: blue;
+    height: 15px;
+    width:15px;
+    text-align: center;
+    border-radius: 50%;
+    position:relative;
+    left:-40px;
+}
