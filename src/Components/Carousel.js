@@ -8,7 +8,8 @@ const MyCarousel = () => {
 
     return (
         <div className="myCarousel">
-            <Carousel>
+            <Carousel autoPlay interval={4000}
+                infiniteLoop={true}>
                 <div>
                     <img src="/images/Carousel/img1.jpg" />
                     {/* <p className="legend">Legend 1</p> */}
