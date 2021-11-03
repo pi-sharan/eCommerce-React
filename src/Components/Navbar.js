@@ -12,7 +12,7 @@ const Navbar = (props) => {
     }, [])
     return (
         <div className="Navbar">
-            <div className="ui secondary pointing menu">
+            <div className="ui secondary pointing menu" id = "menu">
                 <Link to="/" className="item" >
                     Home
                 </Link>
@@ -31,7 +31,7 @@ const Navbar = (props) => {
                 <Link to="/add" className="item">
                     Add Item
                 </Link>
-                <div className="right menu temp">
+                <div className="right menu temp" id = "menuRight">
                     <Link to="/cart" className="item">
                         <i class="shopping cart large icon cartIcon" ></i>
                     </Link>

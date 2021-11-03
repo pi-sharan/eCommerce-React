@@ -7,7 +7,14 @@
     z-index:10; /*Add this*/
     /* background-color: black; */
 }
-
+.Navbar>#menu>.item:hover{
+    border-radius:15px;
+    background-color:rgb(202, 240, 35);
+}
+.Navbar>#menu>#menuRight>.item:hover{
+    border-radius:15px;
+    background-color:rgb(73, 236, 241);
+}
 .circle{
     color: white;
     background-color: blue;
